@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animación de Flechas con GSAP</title>
+
+</head>
+
+<body>
+    <h1 class="sr-only">Pro activo</h1>
+    <div class="bodyContainer">
+        <div class="navContainer">
+            <div class="containerContent">
+                <div class="gridContainer">
+                    <div>
+                        <div class="logoMenu">
+                            <img src="/logoPRO.svg" alt="PRO" />
+                        </div>
+                    </div>
+                    <div>
+                        <div class="hambMenu">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="carruselContainer">
+            <div class="loaderLogoContainer">
+                <div class="logoContainer"></div>
+                <div class="flechaContainer"></div>
+            </div>
+            <div class="itemGallery">
+                <div class="contenidoBannerMain">
+                    <div class="panelIzq">
+                        <div id="palabrasContainer">
+                            <h3>proactivo</h3>
+                            <h3>progreso</h3>
+                            <h3>proactivo</h3>
+                            <h3>progreso</h3>
+                            <h3>proactivo</h3>
+                            <h3>progreso</h3>
+                            <h3>proactivo</h3>
+                            <h3>progreso</h3>
+                            <h3>proactivo</h3>
+                            <h3>progreso</h3>
+                            <h3>proactivo</h3>
+                            <h3>progreso</h3>
+                        </div>
+                    </div>
+                    <div class="panelDer">
+                        <div class="flechaContainer">
+                            <img src="/flecha.webp" alt="Flecha" class="flechaImg" />
+                            <img src="/botella.webp" alt="Pro Activo" class="botellaImg" />
+                        </div>
+                        <div class="titularContainer">
+                            <div class="centerInfo">
+                                <h2 class="texto1 colorRojo">PRO</h2>
+                                <h2 class="texto2">ACTIVO</h2>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Imagen de fondo fija -->
+                <div class="background"></div>
+
+                <!-- Contenedor negro con la forma que se recorta -->
+                <div class="mask">
+                    <div class="clip-shape one"></div>
+                    <div class="clip-shape second"></div>
+                    <div class="clip-shape third"></div>
+                    <div class="clip-shape four"></div>
+                    <div class="clip-shape five"></div>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="sectionProContainer">
+            <div>
+                <img src="/bpro1.webp" alt="Pro Love" />
+            </div>
+            <div class="carruselContainerProductos">
+                <div class="fondoProductos">
+                    <div class="contenedorFondoProducto">
+                        <img src="/fondoPro.webp" alt="Fondo Pro" class="bgProducto" />
+                        <div class="titularContenedor">
+                            <h2>
+                                todos <br />
+                                los pro <br />
+                                necesitan <br />
+                                <span>proteína</span>
+                            </h2>
+                            <p>
+                                Descubre toda <br />
+                                la línea POWER
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="flechaContenedor">
+                    <img src="/flecha.svg" alt="flecha pro" />
+                </div>
+                <div class="rejasContainer pos1">
+                    <img src="/rejas.webp" alt="lineas pro" />
+                </div>
+                <div class="rejasContainer pos2">
+                    <img src="/rejas.webp" alt="lineas pro" />
+                </div>
+                <div class="rejasContainer pos3">
+                    <img src="/rejas.webp" alt="lineas pro" />
+                </div>
+                <div class="carruselInterno">
+                    <div class="cardContainer">
+                        <img src="/proP1.webp" alt="Pro" />
+                    </div>
+                    <div class="cardContainer">
+                        <img src="/proP1.webp" alt="Pro" />
+                    </div>
+                    <div class="cardContainer">
+                        <img src="/proP1.webp" alt="Pro" />
+                    </div>
+                    <div class="cardContainer">
+                        <img src="/proP1.webp" alt="Pro" />
+                    </div>
+                    <div class="cardContainer">
+                        <img src="/proP1.webp" alt="Pro" />
+                    </div>
+                </div>
+                <div class="botonesCarrusel">
+                    <button id="btnNext">
+                        <img src="/arrow3.svg" alt="Next" />
+                    </button>
+                    <button id="btnPrev">
+                        <img src="/arrow3.svg" alt="Prev" />
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="sectionDayContainer">
+            <div>
+                <img src="/bpro2.webp" alt="Day Love" />
+            </div>
+            <div class="carruselContainerProductos">
+                <div class="fondoProductos">
+                    <div class="contenedorFondoProducto">
+                        <img src="/fondoDay.webp" alt="Fondo Day" class="bgProducto" />
+                        <div class="titularContenedor">
+                            <h2>
+                                todos <br />
+                                los pro <br />
+                                necesitan <br />
+                                <span>proteína</span>
+                            </h2>
+                            <p>
+                                Descubre toda <br />
+                                la línea DAY
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="flechaContenedor">
+                    <img src="/flecha.svg" alt="flecha pro" />
+                </div>
+                <div class="rejasContainer pos3">
+                    <img src="/rejas.webp" alt="lineas pro" />
+                </div>
+                <div class="carruselInterno">
+                    <div class="cardContainer">
+                        <img src="/proP1.webp" alt="Pro" />
+                    </div>
+                    <div class="cardContainer">
+                        <img src="/proP1.webp" alt="Pro" />
+                    </div>
+                    <div class="cardContainer">
+                        <img src="/proP1.webp" alt="Pro" />
+                    </div>
+                    <div class="cardContainer">
+                        <img src="/proP1.webp" alt="Pro" />
+                    </div>
+                    <div class="cardContainer">
+                        <img src="/proP1.webp" alt="Pro" />
+                    </div>
+                </div>
+                <div class="botonesCarrusel">
+                    <button id="btnNext2">
+                        <img src="/arrow3.svg" alt="Next" />
+                    </button>
+                    <button id="btnPrev2">
+                        <img src="/arrow3.svg" alt="Prev" />
+                    </button>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="containerContent">
+                <div class="hashTagContainer">
+                    <h3>#hazlo<span>pro</span></h3>
+                </div>
+                <div class="navFooterContainer">
+                    <div>
+                        <img src="/logoPRO.svg" alt="Pro Activo" />
+                    </div>
+                    <div>
+                        <a href="/">Inicio</a>
+                        <a href="/">PRO POWER</a>
+                        <a href="/">PRO DAY</a>
+                    </div>
+                    <div>
+                        <a href="">
+                            <img src="/facebook.svg" alt="Facebook" />
+                        </a>
+                        <a href="">
+                            <img src="/instagram.svg" alt="Instagram" />
+                        </a>
+                        <a href="">
+                            <img src="/tiktok.svg" alt="TikTok" />
+                        </a>
+                        <a href="">
+                            <img src="/youtube.svg" alt="YouTube" />
+                        </a>
+                    </div>
+                </div>
+                <div class="legalContainer">
+                    <div>
+                        <p>Copyright © 2025 PRO - Todos los derechos reservados</p>
+                    </div>
+                    <div>
+                        <a href="/politica-de-privacidad.html">Política de privacidad</a>
+                    </div>
+                    <div>
+                        <a href="/terminos-y-condiciones.html">Términos y condiciones</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <script type="module" src="/src/main.js"></script>
+
+</body>
+
+</html>
