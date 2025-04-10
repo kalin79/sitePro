@@ -204,7 +204,7 @@ body {
 }
 
 
-#palabrasContainer {
+.palabrasContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -256,7 +256,13 @@ body {
         height: 100%;
         background: $rojo;
         overflow: hidden;
-        transform: translateX(-50vw);
+        transform: translateX(-100vw);
+        display: none;
+
+        @media screen and (min-width: 992px) {
+            transform: translateX(-50vw);
+            display: block;
+        }
     }
 
     .panelDer {
@@ -266,8 +272,20 @@ body {
 
         .titularContainer {
             border: 0px solid red;
-            margin-left: -6rem;
+            margin-left: -5rem;
             position: relative;
+
+            @media screen and (min-width: 768px) {
+                margin-left: 2rem;
+            }
+
+            @media screen and (min-width: 992px) {
+                margin-left: -5rem;
+            }
+
+            @media screen and (min-width: 1200px) {
+                margin-left: -2rem;
+            }
 
             @media screen and (min-width: 1400px) {
                 margin-left: -2rem;
@@ -282,15 +300,19 @@ body {
                 transform: translateY(-50%);
 
                 h2 {
-                    font-size: 11.25rem;
+                    font-size: 4.5rem;
                     color: white;
                     font-family: 'ROUND 8 FIVE', sans-serif;
                     font-weight: inherit;
                     font-style: italic;
                     display: inherit;
 
-                    @media screen and (min-width: 992px) {
+                    @media screen and (min-width: 768px) {
                         font-size: 9rem;
+                    }
+
+                    @media screen and (min-width: 992px) {
+                        font-size: 8rem;
                     }
 
                     @media screen and (min-width: 1200px) {
@@ -322,14 +344,15 @@ body {
 
             .botellaImg {
                 width: auto;
-                height: 75vh;
+                height: 55vh;
                 object-fit: contain;
                 position: absolute;
                 top: 100vh;
-                left: -5rem;
+                left: 0rem;
 
                 @media screen and (min-width: 992px) {
                     left: -5rem;
+                    height: 75vh;
                 }
 
                 @media screen and (min-width: 1200px) {
@@ -347,6 +370,7 @@ body {
                 object-fit: contain;
                 top: 100vh;
                 position: relative;
+
             }
         }
     }
@@ -379,9 +403,19 @@ body {
     background-image: url('/bpro.webp');
     background-size: cover;
     background-position: center center;
-    clip-path: polygon(61.77% 124.03%, 77.24% 143.01%, 77.42% 160.72%,
-            68.95% 150.4%, 69.28% 179.22%, 54.99% 179.1%,
-            54.75% 150.27%, 45.64% 161.81%, 45.9% 144.12%);
+    // transform: translateY(0);
+    clip-path: polygon(67.53% 36.19%, 72.1% 42.11%, 71.87% 50.26%,
+            68.95% 46.37%, 68.86% 53%, 65.81% 53.1%,
+            65.84% 46.45%, 62.7% 50.71%, 62.82% 42.34%);
+
+    opacity: 0;
+
+    @media screen and (min-width: 992px) {
+        opacity: 1;
+        clip-path: polygon(61.77% 124.03%, 77.24% 143.01%, 77.42% 160.72%,
+                68.95% 150.4%, 69.28% 179.22%, 54.99% 179.1%,
+                54.75% 150.27%, 45.64% 161.81%, 45.9% 144.12%);
+    }
 
 }
 
@@ -425,8 +459,15 @@ body {
 .clip-shape.five {
     background-image: url('/bpro.webp');
     background-size: cover;
-    background-position: 12vw center;
-    left: -12vw;
+    background-position: center;
+    left: -13.5vw;
+
+    @media screen and (min-width: 992px) {
+        background-position: 12vw center;
+        left: -12vw;
+
+    }
+
     /* Mueve la segunda flecha más a la izquierda */
 }
 
