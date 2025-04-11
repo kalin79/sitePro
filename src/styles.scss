@@ -1,6 +1,7 @@
 $rojo: #ED1C24;
 $gris: #DDDDDD;
 $grisOscuro: #A6A8AB;
+$morado: #AC00FF;
 // fuentes
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@300..700&display=swap');
 
@@ -168,6 +169,37 @@ body {
     position: relative;
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
+
+    .carruselItemsBanner {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        width: 100%;
+        height: 100%;
+    }
+
+
+    .controlBanner {
+        position: absolute;
+        bottom: 3rem;
+        right: 3rem;
+        border: 0px solid red;
+        z-index: 100;
+
+        button {
+            border: 0px solid white;
+            border-radius: 8px;
+            width: 100px;
+            height: 20px;
+            background: rgba(white, .35);
+            cursor: pointer;
+
+            &.active {
+                background: white
+            }
+        }
+    }
 
     .loaderLogoContainer {
         position: absolute;
@@ -238,7 +270,26 @@ body {
 
 }
 
+swiper-container {
+    width: 100%;
+    height: 100%;
+}
 
+swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 .contenidoBannerMain {
     width: 100%;
@@ -258,6 +309,18 @@ body {
         overflow: hidden;
         transform: translateX(-100vw);
         display: none;
+
+        @media screen and (min-width: 1200px) {
+            width: 400px;
+        }
+
+        @media screen and (min-width: 1400px) {
+            width: 495px;
+        }
+
+        &.bgMorado {
+            background: $morado;
+        }
 
         @media screen and (min-width: 992px) {
             transform: translateX(-50vw);
@@ -284,11 +347,15 @@ body {
             }
 
             @media screen and (min-width: 1200px) {
-                margin-left: -2rem;
+                margin-left: 0rem;
             }
 
             @media screen and (min-width: 1400px) {
-                margin-left: -2rem;
+                margin-left: 2rem;
+            }
+
+            @media screen and (min-width: 1800px) {
+                margin-left: 4rem;
             }
 
             .centerInfo {
@@ -306,6 +373,7 @@ body {
                     font-weight: inherit;
                     font-style: italic;
                     display: inherit;
+                    opacity: 0;
 
                     @media screen and (min-width: 768px) {
                         font-size: 9rem;
@@ -319,9 +387,19 @@ body {
                         font-size: 10.5rem;
                     }
 
+                    @media screen and (min-width: 1400px) {
+                        font-size: 12rem;
+                    }
+
+                    @media screen and (min-width: 1800px) {
+                        font-size: 16.5rem;
+                    }
+
                     span {
                         display: inline-block;
                         opacity: 0;
+                        transform: scale(0.1) translateZ(-1000px) translateY(-100px);
+                        /* o 100px según índice */
                         /* Ocultar el texto inicialmente */
                     }
 
@@ -347,7 +425,7 @@ body {
                 height: 55vh;
                 object-fit: contain;
                 position: absolute;
-                top: 100vh;
+                bottom: -75vh;
                 left: 0rem;
 
                 @media screen and (min-width: 992px) {
@@ -382,6 +460,10 @@ body {
     width: 100vw;
     height: 100vh;
     background: url('/bpro.webp') no-repeat center center/cover;
+
+    &.bgDay {
+        background-image: url('/bDay.webp');
+    }
 }
 
 /* Contenedor que enmascara la imagen */
@@ -410,6 +492,10 @@ body {
 
     opacity: 0;
 
+    &.bgDay {
+        background-image: url('/bDay.webp');
+    }
+
     @media screen and (min-width: 992px) {
         opacity: 1;
         clip-path: polygon(61.77% 124.03%, 77.24% 143.01%, 77.42% 160.72%,
@@ -425,7 +511,11 @@ body {
     background-size: cover;
     background-position: 25vw center;
     left: -25vw;
+
     /* Mueve la segunda flecha más a la izquierda */
+    &.bgDay {
+        background-image: url('/bDay.webp');
+    }
 }
 
 /* Flecha 2 (desplazada a la izquierda) */
@@ -434,7 +524,11 @@ body {
     background-size: cover;
     background-position: 44vw center;
     left: -44vw;
+
     /* Mueve la segunda flecha más a la izquierda */
+    &.bgDay {
+        background-image: url('/bDay.webp');
+    }
 }
 
 /* Flecha 3 (desplazada a la izquierda) */
@@ -443,7 +537,11 @@ body {
     background-size: cover;
     background-position: 13vw center;
     left: -13vw;
+
     /* Mueve la segunda flecha más a la izquierda */
+    &.bgDay {
+        background-image: url('/bDay.webp');
+    }
 }
 
 
@@ -452,7 +550,11 @@ body {
     background-size: cover;
     background-position: -10vw center;
     left: 10vw;
+
     /* Mueve la segunda flecha más a la izquierda */
+    &.bgDay {
+        background-image: url('/bDay.webp');
+    }
 }
 
 /* Flecha 5 (desplazada a la izquierda) */
@@ -461,6 +563,10 @@ body {
     background-size: cover;
     background-position: center;
     left: -13.5vw;
+
+    &.bgDay {
+        background-image: url('/bDay.webp');
+    }
 
     @media screen and (min-width: 992px) {
         background-position: 12vw center;
@@ -616,7 +722,7 @@ body {
                     .titularContenedor {
                         position: relative;
                         z-index: 10;
-                        padding: 12rem 0 0 1rem;
+                        padding: 14rem 0 0 1rem;
                         display: inline-block;
 
                         p {
@@ -627,17 +733,17 @@ body {
                             line-height: 1em;
                             color: white;
                             text-align: right;
-                            margin-top: -.5rem;
+                            margin-top: 0rem;
 
                             @media screen and (min-width: 992px) {
-                                font-size: .95rem;
+                                font-size: 1rem;
                                 margin-right: 3.5rem;
                             }
 
                             @media screen and (min-width: 1200px) {
                                 font-size: 1rem;
                                 margin-right: 4rem;
-                                margin-top: -.25rem;
+                                margin-top: -.65rem;
                             }
 
                             @media screen and (min-width: 1400px) {
@@ -654,11 +760,11 @@ body {
 
 
                             @media screen and (min-width: 992px) {
-                                font-size: 5rem;
+                                font-size: 5.65rem;
                             }
 
                             @media screen and (min-width: 1200px) {
-                                font-size: 6rem;
+                                font-size: 6.75rem;
                             }
 
                             @media screen and (min-width: 1400px) {
@@ -833,7 +939,7 @@ body {
                     .titularContenedor {
                         position: relative;
                         z-index: 10;
-                        padding: 12rem 0 0 1rem;
+                        padding: 14rem 0 0 1rem;
                         display: inline-block;
 
                         p {
@@ -844,17 +950,17 @@ body {
                             line-height: 1em;
                             color: white;
                             text-align: right;
-                            margin-top: -.5rem;
+                            margin-top: 0rem;
 
                             @media screen and (min-width: 992px) {
-                                font-size: .95rem;
+                                font-size: 1rem;
                                 margin-right: 3.5rem;
                             }
 
                             @media screen and (min-width: 1200px) {
                                 font-size: 1rem;
                                 margin-right: 4rem;
-                                margin-top: -.25rem;
+                                margin-top: -.65rem;
                             }
 
                             @media screen and (min-width: 1400px) {
@@ -871,16 +977,17 @@ body {
 
 
                             @media screen and (min-width: 992px) {
-                                font-size: 5rem;
+                                font-size: 5.65rem;
                             }
 
                             @media screen and (min-width: 1200px) {
-                                font-size: 6rem;
+                                font-size: 6.75rem;
                             }
 
                             @media screen and (min-width: 1400px) {
                                 font-size: 7.5rem;
                             }
+
 
                             span {
                                 color: $grisOscuro;

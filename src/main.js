@@ -1,7 +1,4 @@
-// import Swiper from "swiper";
-// import "swiper/css";
-// import "swiper/css/navigation";
-// import "swiper/css/pagination";
+
 
 import gsap from "gsap";
 // import { CustomEase } from "gsap/CustomEase";
@@ -16,6 +13,28 @@ import FlechaLogo from '/flechaLogo.svg?raw';
 // gsap.registerPlugin(ScrollTrigger);
 import "./styles.scss";
 document.addEventListener("DOMContentLoaded", function () {
+
+    gsap.set(".navContainer .logoMenu", { y: -200 })
+
+    gsap.fromTo(".navContainer", {
+        opacity: 0,
+    }, {
+        opacity: 1,
+        onComplete: () => {
+            gsap.fromTo(".navContainer .logoMenu", {
+                y: -200
+            }, {
+                y: 0
+            })
+        }
+    }, 6)
+
+
+
+
+
+
+
 
     // Carrusel de DAY 
 
@@ -133,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // fin del carrusel de day
 
 
-    // Carrusel de PRO 
+    // Carrusel  de PRO 
 
     let currentIndex = 0;
     const totalCards = document.querySelectorAll(".sectionProContainer .cardContainer").length;
@@ -326,8 +345,13 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         // Seleccionar las letras recién creadas
+        const h2Texto = document.querySelectorAll(`.${selectorBanner} ` + ".titularContainer .texto1");
+        const h2Texto2 = document.querySelectorAll(`.${selectorBanner} ` + ".titularContainer .texto2");
         const spans1 = document.querySelectorAll(`.${selectorBanner} ` + ".titularContainer .texto1 span");
         const spans2 = document.querySelectorAll(`.${selectorBanner} ` + ".titularContainer .texto2 span");
+
+        gsap.set(h2Texto, { opacity: 1 })
+        gsap.set(h2Texto2, { opacity: 1 })
 
         // Define la opacidad inicial y el decremento
         let opacidadInicial = 1;
@@ -444,9 +468,9 @@ document.addEventListener("DOMContentLoaded", function () {
             )`;
             },
             onComplete: function () {
+                console.log('sss')
                 // Después de la animación inicial, esperamos 5 segundos y luego escalamos la flecha
-                gsap.to(`.${selectorBanner} ` + ".clip-shape.five", {
-                    delay: 1, // Pausa de 5 segundos
+                tlAnimacionBanner.to(`.${selectorBanner} ` + ".clip-shape.five", {
                     duration: 1.5, // Duración de la animación de escalado
                     ease: "power3.out",
                     onUpdate: function () {
@@ -527,9 +551,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         document.querySelector(`.${selectorBanner} ` + '.clip-shape.five').style.backgroundPosition = `12vw center`;
 
                     }
-                });
+                }, '-=4');
             }
-        }, 5);
+        });
 
         //FIN
 
@@ -576,20 +600,19 @@ document.addEventListener("DOMContentLoaded", function () {
             9,
         );
 
-        // // Animacion de la Botella
-        tlAnimacionBanner.fromTo(`.${selectorBanner} ` + ".flechaContainer .botellaImg",
-            {
-                y: "100vh",
-            },
+        tlAnimacionBanner.to(`.${selectorBanner} ` + ".flechaContainer .botellaImg",
             {
                 y: "-75vh",
-                // delay: 8.5,
                 duration: 1.25,
                 ease: "power3.out",
-                onComplete: moverAleatoriamente
+                onComplete: () => {
+                    moverAleatoriamente(selectorBanner)
+                }
             },
-            9.35,
+            9.50,
         );
+
+
 
         tlAnimacionBanner.add(() => {
             spans1.forEach((letra, index) => {
@@ -635,20 +658,8 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }, 9.5);
 
-        gsap.set(".navContainer .logoMenu", { y: -200 })
 
-        tlAnimacionBanner.fromTo(".navContainer", {
-            opacity: 0,
-        }, {
-            opacity: 1,
-            onComplete: () => {
-                tlAnimacionBanner.fromTo(".navContainer .logoMenu", {
-                    y: -200
-                }, {
-                    y: 0
-                })
-            }
-        })
+        tlAnimacionBanner.play();
 
         return tlAnimacionBanner
     }
@@ -859,10 +870,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }, 7);
 
         // // Animacion de la Botella
-        tlAnimacionBanner.fromTo(`.${selectorBanner} ` + ".flechaContainer .botellaImg",
-            {
-                y: "100vh",
-            },
+        tlAnimacionBanner.to(`.${selectorBanner} ` + ".flechaContainer .botellaImg",
             {
                 y: "-75vh",
                 duration: 1.25,
@@ -936,10 +944,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // Función que anima el div a una nueva posición aleatoria
-    function moverAleatoriamente() {
+    function moverAleatoriamente(selectorBanner) {
 
         const tl = gsap.timeline({ repeat: -1, yoyo: true, ease: "sine.inOut" });
-        const element = ".flechaContainer .botellaImg";
+        const element = `.${selectorBanner} ` + ".flechaContainer .botellaImg";
         // Añade animaciones a la línea de tiempo
         tl.to(element, { y: "-75vh", duration: 2 }) // Mueve hacia arriba 10px
             .to(element, { x: 3, duration: 2 })  // Mueve hacia la derecha 10px
@@ -950,14 +958,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let currentTimeline;
 
-    const mobileTimeline = () => {
-        return animamarBannerHomeMobile('carruselBannerPro')
+    const mobileTimeline = (activarBanner) => {
+        return animamarBannerHomeMobile(activarBanner)
     }
-    const tabletTimeline = () => {
-        return animamarBannerHomeMobile('carruselBannerPro')
+    const tabletTimeline = (activarBanner) => {
+        return animamarBannerHomeMobile(activarBanner)
     }
-    const desktopTimeline = () => {
-        return animamarBannerHome('carruselBannerPro')
+    const desktopTimeline = (activarBanner) => {
+        return animamarBannerHome(activarBanner)
     }
 
     // Detectar el rango de pantalla actual
@@ -971,7 +979,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Lógica para ejecutar la animación correcta
 
-    function setupAnimation() {
+    function setupAnimation(activarBanner) {
         // console.log(currentTimeline)
         if (currentTimeline) currentTimeline.kill(); // Detiene animación anterior
 
@@ -981,19 +989,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
         switch (device) {
             case "mobile":
-                currentTimeline = mobileTimeline();
+                currentTimeline = mobileTimeline(activarBanner);
                 break;
             case "tablet":
-                currentTimeline = tabletTimeline();
+                currentTimeline = tabletTimeline(activarBanner);
                 break;
             case "desktop":
-                currentTimeline = desktopTimeline();
+                currentTimeline = desktopTimeline(activarBanner);
                 break;
         }
     }
 
     // Ejecutar al cargar
-    setupAnimation();
+    setupAnimation('carruselBannerPro');
 
     // Escuchar cambios de tamaño y actualizar animación si cambia el rango
     let lastDevice = getDeviceType();
@@ -1006,6 +1014,82 @@ document.addEventListener("DOMContentLoaded", function () {
             // console.log('entro');
             // setupAnimation();
         }
+    });
+
+    // Carrusel Home Banner
+    let currentIndexBanner = 0;
+    const totalCardsBanner = document.querySelectorAll(".carruselContainer .carruselItemsBanner .itemBanner").length;
+    const itemsBanner = document.querySelectorAll(".carruselContainer .carruselItemsBanner .itemBanner");
+    let isBanner = false;
+    let animarPRO = false;
+    let animarDAY = false;
+
+
+    const bannerSlideNext = () => {
+        itemsBanner.forEach((item, i) => {
+            gsap.to(item, {
+                xPercent: "-=100", // mover cada item 100px a la derecha
+                duration: 0.5,
+                ease: "power2.out",
+                onComplete: () => {
+                    isBanner = false;
+                    if (!animarDAY) {
+                        animarDAY = true;
+                        console.log("animarDAY", animarDAY);
+                        animamarBannerHome('carruselBannerDay');
+                    }
+
+                }
+            });
+        });
+    }
+
+    const bannerSlidePrev = (index) => {
+        itemsBanner.forEach((item, i) => {
+            gsap.to(item, {
+                xPercent: "+=100", // mover cada item 100px a la derecha
+                duration: 0.5,
+                ease: "power2.out",
+                onComplete: () => {
+                    isBanner = false;
+                }
+            });
+        });
+    };
+
+    document.getElementById("btnBannerNext").addEventListener("click", () => {
+
+        let allBTN = document.querySelectorAll(".controlBanner button")
+        let btnActive = document.getElementById("btnBannerNext")
+        allBTN.forEach(btn => btn.classList.remove("active"));
+        btnActive.classList.add("active");
+
+        if (currentIndexBanner > 0) {
+            if (!isBanner) {
+                isBanner = true;
+                bannerSlidePrev(currentIndexBanner);
+                currentIndexBanner--;
+            }
+        }
+
+
+
+    });
+
+    document.getElementById("btnBannerPrev").addEventListener("click", () => {
+
+        let allBTN = document.querySelectorAll(".controlBanner button")
+        let btnActive = document.getElementById("btnBannerPrev")
+        allBTN.forEach(btn => btn.classList.remove("active"));
+        btnActive.classList.add("active");
+        if (currentIndexBanner < totalCardsBanner - 1) {
+            if (!isBanner) {
+                isBanner = true;
+                currentIndexBanner++;
+                bannerSlideNext(currentIndexBanner);
+            }
+        }
+
     });
 
 
