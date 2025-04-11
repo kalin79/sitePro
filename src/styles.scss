@@ -99,10 +99,6 @@ body {
     overflow-x: hidden;
 }
 
-.swiper {
-    width: 100vw;
-    height: 100vh;
-}
 
 
 
@@ -168,8 +164,12 @@ body {
 .carruselContainer {
     position: relative;
     width: 100vw;
-    height: 100vh;
+    height: 750px;
     overflow: hidden;
+
+    @media screen and (min-width: 992px) {
+        height: 100vh;
+    }
 
     .carruselItemsBanner {
         display: flex;
@@ -190,10 +190,15 @@ body {
         button {
             border: 0px solid white;
             border-radius: 8px;
-            width: 100px;
+            width: 40px;
             height: 20px;
             background: rgba(white, .35);
             cursor: pointer;
+
+            @media screen and (min-width: 992px) {
+                width: 100px;
+                height: 20px;
+            }
 
             &.active {
                 background: white
@@ -303,12 +308,13 @@ swiper-slide img {
     z-index: 3;
 
     .panelIzq {
-        width: 495px;
+        width: 400px;
         height: 100%;
         background: $rojo;
         overflow: hidden;
         transform: translateX(-100vw);
         display: none;
+
 
         @media screen and (min-width: 1200px) {
             width: 400px;
@@ -335,7 +341,7 @@ swiper-slide img {
 
         .titularContainer {
             border: 0px solid red;
-            margin-left: -5rem;
+            margin-left: -6rem;
             position: relative;
 
             @media screen and (min-width: 768px) {
@@ -367,7 +373,7 @@ swiper-slide img {
                 transform: translateY(-50%);
 
                 h2 {
-                    font-size: 4.5rem;
+                    font-size: 4rem;
                     color: white;
                     font-family: 'ROUND 8 FIVE', sans-serif;
                     font-weight: inherit;
@@ -422,15 +428,16 @@ swiper-slide img {
 
             .botellaImg {
                 width: auto;
-                height: 55vh;
+                height: 500px;
                 object-fit: contain;
                 position: absolute;
-                bottom: -75vh;
-                left: 0rem;
+                bottom: -500px;
+                left: -3rem;
 
                 @media screen and (min-width: 992px) {
                     left: -5rem;
                     height: 75vh;
+                    bottom: -75vh;
                 }
 
                 @media screen and (min-width: 1200px) {
@@ -580,8 +587,18 @@ swiper-slide img {
 // Seccion Pro Home
 
 .sectionProContainer {
-    display: flex;
-    height: 100vh;
+
+    height: auto;
+
+    @media screen and (min-width: 768px) {
+        height: 680px;
+        display: flex;
+    }
+
+    @media screen and (min-width: 992px) {
+        height: 100vh;
+        display: flex;
+    }
 
     @media screen and (min-width: 1600px) {
         height: 900px;
@@ -590,6 +607,11 @@ swiper-slide img {
     >div {
         &:first-child {
             width: 33.33%;
+            display: none;
+
+            @media screen and (min-width: 992px) {
+                display: block;
+            }
 
             img {
                 height: 100%;
@@ -617,13 +639,17 @@ swiper-slide img {
             .botonesCarrusel {
                 position: absolute;
                 bottom: 0;
-                right: 5rem;
+                right: 0rem;
                 display: flex;
                 gap: .25rem;
 
+                @media screen and (min-width: 992px) {
+                    right: 5rem;
+                }
+
                 button {
-                    width: 120px;
-                    height: 120px;
+                    width: 60px;
+                    height: 60px;
                     background: rgba(black, .70);
                     z-index: 40;
                     border: 0;
@@ -632,6 +658,28 @@ swiper-slide img {
                     align-items: center;
                     flex-direction: column;
                     cursor: pointer;
+                    padding: 1rem;
+
+
+                    @media screen and (min-width: 768px) {
+                        width: 120px;
+                        height: 120px;
+                        padding: 1rem;
+                    }
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+
+                        @media screen and (min-width: 992px) {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: contain;
+                        }
+                    }
+
+
 
                     &:last-child {
                         transform: scaleX(-1)
@@ -640,13 +688,20 @@ swiper-slide img {
             }
 
             .carruselInterno {
-                // background: blue;
+                background: url("/fondoPro.webp");
+                background-size: cover;
+                background-position: center right;
                 z-index: 20;
                 position: relative;
-                height: 100%;
+                height: 550px;
                 overflow: hidden;
                 display: flex;
                 flex-wrap: nowrap;
+
+                @media screen and (min-width: 768px) {
+                    height: 100%;
+                    background: transparent;
+                }
 
                 .cardContainer {
                     flex: 0 0 70%;
@@ -708,16 +763,25 @@ swiper-slide img {
             }
 
             .fondoProductos {
-                position: absolute;
+                position: relative;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100%;
 
+                @media screen and (min-width: 768px) {
+                    position: absolute;
+                }
+
                 .contenedorFondoProducto {
                     width: 100%;
                     height: 100%;
                     position: relative;
+                    padding-bottom: 4rem;
+
+                    @media screen and (min-width: 768px) {
+                        padding-bottom: 0rem;
+                    }
 
                     .titularContenedor {
                         position: relative;
@@ -754,10 +818,9 @@ swiper-slide img {
                         h2 {
                             font-family: 'ROUND 8 FIVE';
                             font-style: italic;
-                            font-size: 7.5rem;
+                            font-size: 5.5rem;
                             color: white;
                             line-height: .85em;
-
 
                             @media screen and (min-width: 992px) {
                                 font-size: 5.65rem;
@@ -797,8 +860,18 @@ swiper-slide img {
 // Seccion Day Home
 
 .sectionDayContainer {
-    display: flex;
-    height: 100vh;
+    height: auto;
+    overflow: hidden;
+
+    @media screen and (min-width: 768px) {
+        height: 680px;
+        display: flex;
+    }
+
+    @media screen and (min-width: 992px) {
+        height: 100vh;
+        display: flex;
+    }
 
     @media screen and (min-width: 1600px) {
         height: 900px;
@@ -807,6 +880,11 @@ swiper-slide img {
     >div {
         &:first-child {
             width: 33.33%;
+            display: none;
+
+            @media screen and (min-width: 992px) {
+                display: block;
+            }
 
             img {
                 height: 100%;
@@ -834,13 +912,17 @@ swiper-slide img {
             .botonesCarrusel {
                 position: absolute;
                 bottom: 0;
-                right: 5rem;
+                right: 0rem;
                 display: flex;
                 gap: .25rem;
 
+                @media screen and (min-width: 992px) {
+                    right: 5rem;
+                }
+
                 button {
-                    width: 120px;
-                    height: 120px;
+                    width: 60px;
+                    height: 60px;
                     background: rgba(black, .70);
                     z-index: 40;
                     border: 0;
@@ -849,6 +931,27 @@ swiper-slide img {
                     align-items: center;
                     flex-direction: column;
                     cursor: pointer;
+                    padding: 1rem;
+
+                    @media screen and (min-width: 768px) {
+                        width: 120px;
+                        height: 120px;
+                        padding: 1rem;
+                    }
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+
+                        @media screen and (min-width: 992px) {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: contain;
+                        }
+                    }
+
+
 
                     &:last-child {
                         transform: scaleX(-1)
@@ -857,13 +960,26 @@ swiper-slide img {
             }
 
             .carruselInterno {
-                // background: blue;
+                background: url("/fondoDay.webp");
+                background-size: cover;
+                background-position: center right;
                 z-index: 20;
                 position: relative;
-                height: 100%;
+                height: 550px;
                 overflow: hidden;
                 display: flex;
                 flex-wrap: nowrap;
+
+
+                @media screen and (min-width: 768px) {
+                    height: 100%;
+                    background: transparent;
+                }
+
+                @media screen and (min-width: 992px) {
+                    // height: 100%;
+                    background: transparent;
+                }
 
                 .cardContainer {
                     flex: 0 0 70%;
@@ -925,16 +1041,25 @@ swiper-slide img {
             }
 
             .fondoProductos {
-                position: absolute;
+                position: relative;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100%;
 
+                @media screen and (min-width: 768px) {
+                    position: absolute;
+                }
+
                 .contenedorFondoProducto {
                     width: 100%;
                     height: 100%;
                     position: relative;
+                    padding-bottom: 4rem;
+
+                    @media screen and (min-width: 992px) {
+                        padding-bottom: 0rem;
+                    }
 
                     .titularContenedor {
                         position: relative;
@@ -971,10 +1096,9 @@ swiper-slide img {
                         h2 {
                             font-family: 'ROUND 8 FIVE';
                             font-style: italic;
-                            font-size: 7.5rem;
+                            font-size: 5.5rem;
                             color: white;
                             line-height: .85em;
-
 
                             @media screen and (min-width: 992px) {
                                 font-size: 5.65rem;
@@ -988,9 +1112,8 @@ swiper-slide img {
                                 font-size: 7.5rem;
                             }
 
-
                             span {
-                                color: $grisOscuro;
+                                color: black;
                             }
 
                         }
@@ -1031,22 +1154,39 @@ footer {
             p {
                 font-family: "Poppins", sans-serif;
                 font-weight: 500;
-                font-size: 0.875rem;
+                font-size: 0.75rem;
                 line-height: 1em;
                 color: white;
                 text-decoration: none;
+
+                @media screen and (min-width: 992px) {
+                    font-size: 0.875rem;
+                }
             }
 
             &:nth-child(1) {
-                grid-column: 1 / span 5;
+                grid-column: 1 / -1;
+
+                @media screen and (min-width: 992px) {
+                    grid-column: 1 / span 5;
+                }
             }
 
             &:nth-child(2) {
-                grid-column: 9 / span 2;
+                grid-column: 1 / span 6;
+
+                @media screen and (min-width: 992px) {
+                    grid-column: 9 / span 2;
+                }
             }
 
             &:nth-child(3) {
-                grid-column: 11 / span 2;
+                grid-column: 7 / -1;
+                text-align: right;
+
+                @media screen and (min-width: 992px) {
+                    grid-column: 11 / span 2;
+                }
             }
         }
     }
@@ -1056,7 +1196,11 @@ footer {
         grid-template-columns: repeat(12, 1fr);
         gap: 1rem;
         align-items: center;
-        padding: 4rem 0;
+        padding: 4rem 0 1rem;
+
+        @media screen and (min-width: 992px) {
+            padding: 4rem 0;
+        }
 
         >div {
             &:nth-child(1) {
@@ -1069,10 +1213,14 @@ footer {
             }
 
             &:nth-child(2) {
-                grid-column: 3 / span 3;
+                grid-column: 9 / -1;
                 display: flex;
                 flex-direction: column;
                 gap: .5rem;
+
+                @media screen and (mmin-width: 992px) {
+                    grid-column: 3 / span 3;
+                }
 
                 a {
                     font-family: "Poppins", sans-serif;
@@ -1085,23 +1233,33 @@ footer {
             }
 
             &:nth-child(3) {
-                grid-column: 10 / -1;
+                grid-column: 1 / -1;
                 display: flex;
                 justify-content: flex-start;
                 align-items: flex-start;
+                justify-content: flex-end;
                 gap: 1rem;
+
+                @media screen and (mmin-width: 992px) {
+                    grid-column: 10 / -1;
+                    justify-content: flex-start;
+                }
             }
         }
     }
 
     .hashTagContainer {
         h3 {
-            font-size: 7.5rem;
+            font-size: 5.5rem;
             font-family: 'ROUND 8 FIVE';
             font-style: italic;
             color: white;
             text-transform: uppercase;
             text-align: center;
+
+            @media screen and (min-width: 992px) {
+                font-size: 7.5rem;
+            }
 
             span {
                 color: $rojo;

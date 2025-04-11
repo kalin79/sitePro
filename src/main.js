@@ -666,11 +666,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function animamarBannerHomeMobile(selectorBanner) {
 
-        // Define la opacidad inicial y el decremento
-        let opacidadInicial = 1;
-        const decremento = 0.12;
-        const tlAnimacionBanner = gsap.timeline();
-
 
         document.querySelector(`.${selectorBanner} ` + ".loaderLogoContainer .logoContainer").innerHTML = LetraP + LetraR + LetraO;
         document.querySelector(`.${selectorBanner} ` + ".loaderLogoContainer .flechaContainer").innerHTML = FlechaLogo;
@@ -703,10 +698,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
 
-        tlAnimacionBanner.to(`.${selectorBanner} ` + ".loaderLogoContainer", {
+        gsap.to(`.${selectorBanner} ` + ".loaderLogoContainer", {
             duration: 1,
             opacity: 0,
-        }, 2.5);
+            delay: 4,
+        });
 
 
 
@@ -741,8 +737,19 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         // Seleccionar las letras recién creadas
+        const h2Texto = document.querySelectorAll(`.${selectorBanner} ` + ".titularContainer .texto1");
+        const h2Texto2 = document.querySelectorAll(`.${selectorBanner} ` + ".titularContainer .texto2");
         const spans1 = document.querySelectorAll(`.${selectorBanner} ` + ".titularContainer .texto1 span");
         const spans2 = document.querySelectorAll(`.${selectorBanner} ` + ".titularContainer .texto2 span");
+
+        gsap.set(h2Texto, { opacity: 1 })
+        gsap.set(h2Texto2, { opacity: 1 })
+
+        // Define la opacidad inicial y el decremento
+        let opacidadInicial = 1;
+        const decremento = 0.12;
+        const tlAnimacionBanner = gsap.timeline();
+
 
 
         // Animación inicial de .clip-shape.five 
@@ -754,7 +761,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 let progress = this.progress(); // Progreso de la animación (0 a 1)
                 let size = 100 - progress * 60; // Va de 120% a 40%
                 document.querySelector(`.${selectorBanner} ` + '.clip-shape.five').style.clipPath = `
-                    polygon(
+                polygon(
                         67.53% ${size}%, 
                         72.1% ${size + 5.92}%, 
                         71.87% ${size + 14.07}%, 
@@ -767,9 +774,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     )`;
             },
             onComplete: function () {
+                console.log('sss')
                 // Después de la animación inicial, esperamos 5 segundos y luego escalamos la flecha
-                gsap.to(".clip-shape.five", {
-                    delay: 1, // Pausa de 5 segundos
+                tlAnimacionBanner.to(`.${selectorBanner} ` + ".clip-shape.five", {
                     duration: 1.5, // Duración de la animación de escalado
                     ease: "power3.out",
                     onUpdate: function () {
@@ -850,11 +857,12 @@ document.addEventListener("DOMContentLoaded", function () {
                         document.querySelector(`.${selectorBanner} ` + '.clip-shape.five').style.backgroundPosition = `center center`;
 
                     }
-                });
+                }, '-=3');
             }
-        });
+        }, 5);
 
         //FIN
+
 
         // animacion de la FLECHA, BOTELLA Y TEXTO 
 
@@ -865,18 +873,26 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             {
                 y: "-90vh",
+                // delay: 8.5,
                 duration: 1.5,
                 ease: "power3.out",
-            }, 7);
+            },
+            8,
+        );
 
-        // // Animacion de la Botella
         tlAnimacionBanner.to(`.${selectorBanner} ` + ".flechaContainer .botellaImg",
             {
                 y: "-75vh",
                 duration: 1.25,
                 ease: "power3.out",
-                onComplete: moverAleatoriamente
-            });
+                onComplete: () => {
+                    moverAleatoriamenteMobil(selectorBanner)
+                }
+            },
+            8.50,
+        );
+
+
 
         tlAnimacionBanner.add(() => {
             spans1.forEach((letra, index) => {
@@ -898,7 +914,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 );
             });
-        });
+        }, 9);
 
         tlAnimacionBanner.add(() => {
             spans2.forEach((letra, index) => {
@@ -920,31 +936,29 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 );
             });
-        });
+        }, 9.5);
 
 
+        tlAnimacionBanner.play();
 
-        gsap.set(".navContainer .logoMenu", { y: -200 })
-
-        tlAnimacionBanner.fromTo(".navContainer", {
-            opacity: 0,
-        }, {
-            opacity: 1,
-            onComplete: () => {
-                tlAnimacionBanner.fromTo(".navContainer .logoMenu", {
-                    y: -200
-                }, {
-                    y: 0
-                })
-            }
-        })
-
-        return tlAnimacionBanner;
+        return tlAnimacionBanner
     }
 
 
     // Función que anima el div a una nueva posición aleatoria
     function moverAleatoriamente(selectorBanner) {
+
+        const tl = gsap.timeline({ repeat: -1, yoyo: true, ease: "sine.inOut" });
+        const element = `.${selectorBanner} ` + ".flechaContainer .botellaImg";
+        // Añade animaciones a la línea de tiempo
+        tl.to(element, { y: "-75vh", duration: 2 }) // Mueve hacia arriba 10px
+            .to(element, { x: 3, duration: 2 })  // Mueve hacia la derecha 10px
+            .to(element, { y: "-73vh", duration: 2 })  // Mueve hacia abajo 10px
+            .to(element, { x: -3, duration: 2 }); // Mueve hacia la izquierda 10px
+
+    }
+
+    function moverAleatoriamenteMobil(selectorBanner) {
 
         const tl = gsap.timeline({ repeat: -1, yoyo: true, ease: "sine.inOut" });
         const element = `.${selectorBanner} ` + ".flechaContainer .botellaImg";
@@ -1026,6 +1040,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     const bannerSlideNext = () => {
+        let lastDevice = getDeviceType();
         itemsBanner.forEach((item, i) => {
             gsap.to(item, {
                 xPercent: "-=100", // mover cada item 100px a la derecha
@@ -1036,7 +1051,17 @@ document.addEventListener("DOMContentLoaded", function () {
                     if (!animarDAY) {
                         animarDAY = true;
                         console.log("animarDAY", animarDAY);
-                        animamarBannerHome('carruselBannerDay');
+                        switch (lastDevice) {
+                            case "mobile":
+                                animamarBannerHomeMobile('carruselBannerDay');
+                                break;
+                            case "tablet":
+                                animamarBannerHomeMobile('carruselBannerDay');
+                                break;
+                            case "desktop":
+                                animamarBannerHome('carruselBannerDay');
+                                break;
+                        }
                     }
 
                 }
